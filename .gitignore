@@ -1,0 +1,93 @@
+# ── Python / FastAPI ──────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.env
+.env.*
+!.env.example
+
+# pytest
+.pytest_cache/
+.cache/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# mypy / ruff / pyright
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+pyrightconfig.json
+
+# ── Node / Next.js ────────────────────────────────────────────────────────────
+node_modules/
+.next/
+out/
+.vercel/
+.turbo/
+
+# Build output
+dist/
+build/
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# TypeScript build info
+*.tsbuildinfo
+next-env.d.ts
+
+# ── Editors & OS ─────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Secrets & local config ────────────────────────────────────────────────────
+*.pem
+*.key
+*.cert
+*.p12
+secrets/
+local_settings.py
+
+# ── Docker ────────────────────────────────────────────────────────────────────
+*.log
+docker-compose.override.yml
+
+# ── Misc ──────────────────────────────────────────────────────────────────────
+*.bak
+*.tmp
+.hypothesis/
