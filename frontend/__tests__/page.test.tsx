@@ -16,7 +16,20 @@ jest.mock(
   { virtual: true }
 );
 
+// Mock next/navigation for useRouter
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({ replace: jest.fn(), push: jest.fn() }),
+}));
+
 import Home from '@/app/page';
+
+beforeEach(() => {
+  localStorage.setItem('prelegal_logged_in', '1');
+});
+
+afterEach(() => {
+  localStorage.clear();
+});
 
 describe('Home page — rendering', () => {
   it('renders the page header title', () => {

@@ -1,13 +1,26 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import NdaForm from '@/components/NdaForm';
 import NdaPreview from '@/components/NdaPreview';
 import { defaultFormData, type NdaFormData } from '@/lib/types';
 
 export default function Home() {
+  const router = useRouter();
+  const [ready, setReady] = useState(false);
   const [formData, setFormData] = useState<NdaFormData>(defaultFormData);
   const [downloading, setDownloading] = useState(false);
+
+  useEffect(() => {
+    if (!localStorage.getItem('prelegal_logged_in')) {
+      router.replace('/login');
+    } else {
+      setReady(true);
+    }
+  }, [router]);
+
+  if (!ready) return null;
 
   const handleDownload = async () => {
     setDownloading(true);
@@ -42,7 +55,7 @@ export default function Home() {
         <button
           onClick={handleDownload}
           disabled={downloading}
-          className="inline-flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-60"
+          className="inline-flex items-center gap-2 rounded-md bg-brand-purple px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2 disabled:opacity-60"
         >
           {downloading ? (
             <>

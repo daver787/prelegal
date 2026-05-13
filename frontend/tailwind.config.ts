@@ -11,6 +11,15 @@ const config: Config = {
       fontFamily: {
         serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
       },
+      colors: {
+        brand: {
+          yellow: '#ecad0a',
+          blue: '#209dd7',
+          purple: '#753991',
+          navy: '#032147',
+          gray: '#888888',
+        },
+      },
     },
   },
   plugins: [],
