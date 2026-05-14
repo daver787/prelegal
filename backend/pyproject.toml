@@ -5,8 +5,10 @@ requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.115.0",
     "litellm>=1.83.14",
+    "bcrypt>=4.0.0",
     "pydantic>=2.12.5",
     "python-dotenv>=1.2.2",
+    "python-jose[cryptography]>=3.3.0",
     "uvicorn[standard]>=0.30.0",
 ]
 
@@ -16,3 +18,9 @@ packages = ["."]
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=9.0.3",
+]

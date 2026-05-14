@@ -16,9 +16,10 @@ jest.mock(
   { virtual: true }
 );
 
-// Mock next/navigation for useRouter
+// Mock next/navigation for useRouter and useSearchParams
 jest.mock('next/navigation', () => ({
   useRouter: () => ({ replace: jest.fn(), push: jest.fn() }),
+  useSearchParams: () => ({ get: () => null }),
 }));
 
 // Mock fetch for AI chat API
@@ -28,7 +29,8 @@ global.fetch = mockFetch;
 import Home from '@/app/page';
 
 beforeEach(() => {
-  localStorage.setItem('prelegal_logged_in', '1');
+  localStorage.setItem('prelegal_token', 'fake-test-token');
+  localStorage.setItem('prelegal_email', 'test@example.com');
   mockFetch.mockResolvedValue({
     ok: true,
     json: async () => ({

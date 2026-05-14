@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { type AgreementData, type DocumentType, DOC_LABELS } from '@/lib/types';
+import { apiFetch } from '@/lib/api';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -11,12 +12,13 @@ interface Message {
 interface Props {
   data: AgreementData;
   onChange: (data: AgreementData) => void;
+  onSave?: (data: AgreementData) => void;
 }
 
 const GREETING =
   "Hi! I can help you draft a legal agreement. What type of document do you need? For example: Mutual NDA, Cloud Service Agreement, Design Partner Agreement, Professional Services Agreement, Software License Agreement, Partnership Agreement, or Pilot Agreement.";
 
-export default function NdaChat({ data, onChange }: Props) {
+export default function NdaChat({ data, onChange, onSave }: Props) {
   const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: GREETING },
   ]);
@@ -39,16 +41,15 @@ export default function NdaChat({ data, onChange }: Props) {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/chat', {
+      const res = await apiFetch('/api/chat', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        // Slice off the static greeting (index 0) — only send real exchange turns
         body: JSON.stringify({ messages: next.slice(1), currentData: data }),
       });
       if (!res.ok) throw new Error('Request failed');
       const { message, updatedData } = await res.json();
       setMessages((prev) => [...prev, { role: 'assistant', content: message }]);
       onChange(updatedData);
+      onSave?.(updatedData);
     } catch {
       setMessages((prev) => [
         ...prev,

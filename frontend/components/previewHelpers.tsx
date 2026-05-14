@@ -140,6 +140,11 @@ export function PreviewShell({
           </p>
         )}
         {children}
+        <div className="mt-8 border-t border-gray-200 pt-4">
+          <p className="text-[11px] leading-relaxed text-gray-400 italic text-center">
+            This document is a draft generated with AI assistance and should be reviewed by a qualified attorney before use. It does not constitute legal advice.
+          </p>
+        </div>
       </div>
     </div>
   );
