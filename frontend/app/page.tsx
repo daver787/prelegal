@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import NdaForm from '@/components/NdaForm';
+import NdaChat from '@/components/NdaChat';
 import NdaPreview from '@/components/NdaPreview';
 import { defaultFormData, type NdaFormData } from '@/lib/types';
 
@@ -82,9 +82,9 @@ export default function Home() {
 
       {/* Main split panel */}
       <div className="flex flex-1 overflow-hidden">
-        {/* Left: Form */}
-        <div className="no-print w-96 flex-shrink-0 overflow-y-auto border-r border-gray-200 bg-white">
-          <NdaForm data={formData} onChange={setFormData} />
+        {/* Left: AI Chat */}
+        <div className="no-print w-96 flex-shrink-0 overflow-hidden border-r border-gray-200 bg-white">
+          <NdaChat data={formData} onChange={setFormData} />
         </div>
 
         {/* Right: Live preview */}
