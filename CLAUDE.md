@@ -8,7 +8,7 @@ The available documents are covered in the catalog.json file in the project root
 
 @catalog.json
 
-PL-6 is the latest completed feature: AI chat now supports all 8 primary document types. The AI auto-detects which document the user wants and guides them through collection of document-specific fields. Each document type has a full custom preview component. Unsupported addenda (SLA, DPA, BAA, AI Addendum) are handled gracefully with suggestions.
+PL-7 is the latest completed feature: real authentication (sign up / sign in against the SQLite users table), document persistence (drafts saved to the database and restored on reload), UI polish, and a legal disclaimer. The app is now feature-complete.
 
 ## Development process
 
@@ -58,12 +58,9 @@ Brand colors are defined in `frontend/tailwind.config.ts` as `brand.yellow`, `br
 
 ## Implementation status
 
-### Done
+### Done (all features complete)
 - **PL-3**: Mutual NDA creator — form + live preview + PDF export (client-side, Next.js)
 - **PL-4**: V1 foundation — Docker container, FastAPI backend (`backend/`), SQLite DB (`data/prelegal.db`, fresh each run), static frontend served by FastAPI, fake login page (any credentials accepted, `localStorage` session flag), start/stop scripts for Mac/Linux/Windows
 - **PL-5**: AI chat for Mutual NDA — freeform chat replaces the form panel; `POST /api/chat` calls LiteLLM/Cerebras with structured output to extract NDA fields; live preview updates in real-time as fields are populated
 - **PL-6**: Expand to all supported document types — AI auto-detects document type; union `FieldUpdates` schema covers all 8 primary document types; `DocumentPreview` dispatches to per-document preview components; `previewHelpers.tsx` shares common UI; unsupported addenda handled gracefully
-
-### Not yet built
-- Real authentication (sign up / sign in against the `users` table)
-- Document persistence (saving drafts to the database)
+- **PL-7**: Real auth (sign up / sign in against `users` table with hashed passwords), document persistence (drafts saved to DB and restored on reload), UI polish, legal disclaimer

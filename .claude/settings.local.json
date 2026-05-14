@@ -12,7 +12,14 @@
       "mcp__atlassian__getAccessibleAtlassianResources",
       "Bash(npm install *)",
       "Bash(npm audit *)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(npm test *)",
+      "Bash(uv add *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(uv run *)",
+      "Bash(uv pip *)",
+      "Bash(docker compose *)"
     ]
   }
 }
