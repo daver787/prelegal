@@ -1,4 +1,4 @@
-import type { NdaFormData } from './types';
+import type { AgreementData } from './types';
 
 export interface Clause {
   number: number;
@@ -64,7 +64,7 @@ export const STANDARD_TERMS_CLAUSES: Clause[] = [
   },
 ];
 
-export function computeTokenValues(data: NdaFormData): Record<string, string> {
+export function computeTokenValues(data: AgreementData): Record<string, string> {
   const mndaTerm =
     data.mndaTermType === 'expires'
       ? `${data.mndaTermYears} year${data.mndaTermYears !== 1 ? 's' : ''} from Effective Date`

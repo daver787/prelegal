@@ -46,7 +46,7 @@ async def api_chat(request: ChatRequest):
     updates = ai.fields.model_dump(exclude_none=True)
     updated_data = dict(request.currentData)
     for field, value in updates.items():
-        if field in ("party1", "party2") and isinstance(value, dict):
+        if field in ("party1", "party2", "provider", "customer", "partner", "company") and isinstance(value, dict):
             updated_data[field] = {**updated_data.get(field, {}), **value}
         else:
             updated_data[field] = value

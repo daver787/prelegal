@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import type { NdaFormData } from '@/lib/types';
+import { type AgreementData, type DocumentType, DOC_LABELS } from '@/lib/types';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -9,12 +9,12 @@ interface Message {
 }
 
 interface Props {
-  data: NdaFormData;
-  onChange: (data: NdaFormData) => void;
+  data: AgreementData;
+  onChange: (data: AgreementData) => void;
 }
 
 const GREETING =
-  "Hi! I'm here to help you draft your Mutual NDA. Let's start — what's the purpose of this agreement? For example, are you evaluating a potential business partnership, exploring a joint venture, or sharing technical information with a vendor?";
+  "Hi! I can help you draft a legal agreement. What type of document do you need? For example: Mutual NDA, Cloud Service Agreement, Design Partner Agreement, Professional Services Agreement, Software License Agreement, Partnership Agreement, or Pilot Agreement.";
 
 export default function NdaChat({ data, onChange }: Props) {
   const [messages, setMessages] = useState<Message[]>([
@@ -66,11 +66,15 @@ export default function NdaChat({ data, onChange }: Props) {
     }
   };
 
+  const subtitle = data.documentType
+    ? DOC_LABELS[data.documentType as DocumentType]
+    : 'Choose a document type';
+
   return (
     <div className="flex h-full flex-col">
       <div className="border-b border-gray-200 px-4 py-3">
         <h2 className="text-sm font-semibold text-brand-navy">AI Assistant</h2>
-        <p className="text-xs text-brand-gray">Mutual NDA</p>
+        <p className="text-xs text-brand-gray">{subtitle}</p>
       </div>
 
       <div className="flex-1 space-y-3 overflow-y-auto p-4">

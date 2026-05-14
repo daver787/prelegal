@@ -1,11 +1,11 @@
 'use client';
 
 import { Fragment } from 'react';
-import type { NdaFormData } from '@/lib/types';
+import type { AgreementData } from '@/lib/types';
 import { STANDARD_TERMS_CLAUSES, computeTokenValues } from '@/lib/ndaTemplate';
 
 interface Props {
-  data: NdaFormData;
+  data: AgreementData;
 }
 
 function renderBold(text: string): React.ReactNode {
@@ -66,7 +66,7 @@ export default function NdaPreview({ data }: Props) {
   return (
     <div className="mx-auto max-w-3xl">
       <div
-        id="nda-preview-content"
+        id="doc-preview-content"
         className="rounded-lg bg-white px-12 py-10 shadow-sm font-serif text-[13px] leading-relaxed text-gray-900"
         style={{ fontFamily: 'Georgia, Cambria, "Times New Roman", Times, serif' }}
       >
