@@ -8,7 +8,7 @@ The available documents are covered in the catalog.json file in the project root
 
 @catalog.json
 
-The current implementation supports all 11 document types via AI chat with full user authentication and document persistence.
+PL-5 is the latest completed feature: AI chat for Mutual NDA drafting. The left panel is now a freeform chat with an AI that asks questions and populates the NDA document in real-time. Real authentication and multi-document support are not yet implemented.
 
 ## Development process
 
@@ -30,7 +30,7 @@ The entire project should be packaged into a Docker container.
 The backend should be in backend/ and be a uv project, using FastAPI.  
 The frontend should be in frontend/  
 The database should use SQLLite and be created from scratch each time the Docker container is brought up, allowing for a users table with sign up and sign in.  
-Consider statically building the frontend and serving it via FastAPI, if that will work.  
+The frontend is statically built (`output: 'export'` in `next.config.ts`) and served by FastAPI via `StaticFiles`. All API routes must be registered on `app` **before** the `app.mount("/", ...)` call in `backend/main.py`.  
 There should be scripts in scripts/ for:  
 ```bash
 # Mac
@@ -53,3 +53,17 @@ Backend available at http://localhost:8000
 - Purple Secondary: `#753991` (submit buttons)
 - Dark Navy: `#032147` (headings)
 - Gray Text: `#888888`
+
+Brand colors are defined in `frontend/tailwind.config.ts` as `brand.yellow`, `brand.blue`, `brand.purple`, `brand.navy`, `brand.gray`. Use Tailwind classes (`bg-brand-purple`, `text-brand-navy`, etc.) rather than inline styles.
+
+## Implementation status
+
+### Done
+- **PL-3**: Mutual NDA creator — form + live preview + PDF export (client-side, Next.js)
+- **PL-4**: V1 foundation — Docker container, FastAPI backend (`backend/`), SQLite DB (`data/prelegal.db`, fresh each run), static frontend served by FastAPI, fake login page (any credentials accepted, `localStorage` session flag), start/stop scripts for Mac/Linux/Windows
+- **PL-5**: AI chat for Mutual NDA — freeform chat replaces the form panel; `POST /api/chat` calls LiteLLM/Cerebras with structured output to extract NDA fields; live preview updates in real-time as fields are populated
+
+### Not yet built
+- Real authentication (sign up / sign in against the `users` table)
+- Support for the other 11 document types beyond Mutual NDA
+- Document persistence (saving drafts to the database)
